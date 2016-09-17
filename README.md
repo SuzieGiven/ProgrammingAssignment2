@@ -16,8 +16,7 @@ of an R object.
 
 In this example we introduce the `<<-` operator which can be used to
 assign a value to an object in an environment that is different from the
-current environment. Below are two functions that are used to create a
-special object that stores a numeric vector and caches its mean.
+current environment (such as in the global environment, or in a separate script). Below are two functions that are used to create a special object that stores a numeric vector and caches its mean.
 
 The first function, `makeVector` creates a special "vector", which is
 really a list containing a function to

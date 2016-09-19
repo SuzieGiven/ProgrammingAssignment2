@@ -1,6 +1,6 @@
-## The functions below use caching to save computation time
+##The functions below use caching to save computation time
 
-## This function creates the matrix and stores in the cache
+##The makeCacheMatrix function creates a matrix object and stores in the cache
 
 makeCacheMatrix <- function(x = matrix()) {
 inv<-NULL  #caches matrix object inv
@@ -16,7 +16,7 @@ setInverse=setInverse,
 getInverse=getInverse)
 }
 
-##cacheSolve uses the matrix created above and takes the inverse.  The inverse matrix is 
+##The cacheSolve function uses the matrix created above and takes the inverse.  The inverse matrix is 
 ##stored in the cache.  
 
 cacheSolve <- function(x=matrix(),...) {

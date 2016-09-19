@@ -3,37 +3,32 @@
 ## This function creates the matrix and stores in the cache
 
 makeCacheMatrix <- function(x = matrix()) {
-mInv <- NULL  #caches matrix mInv
-  set <- function(y) {
-
-    # use `<<-` to assign a value to an object in an environment 
-    # different from the current environment. 
-    
-    x <<- y   
-    mInv <<- NULL
-  }
-  
-  get <- function() x
-  setmInv <- function(MIO) mInv <<- solve  #stores the inverse of the matrix
-  getmInv <- function() mInv                 #retrieves the inverse of the matrix
-  list(set = set, get = get,                 #returns the function
-       setmInv = setmInv,
-       getmInv = getmInv)
+inv<-NULL  #caches matrix object inv
+set<-function(y) {
+x<<-y  #assigns a value to the matrix object in an enviroment different from the current environment 
+inv<<-NULL
 }
+get<-function() x
+setInverse<-function(solve) inv<<-solve
+getInverse<-function() inv   #retrieves the inverse of the matrix
+list(set=set, get=get,        #returns the function
+setInverse=setInverse,
+getInverse=getInverse)
 }
-
 
 ##cacheSolve uses the matrix created above and takes the inverse.  The inverse matrix is 
 ##stored in the cache.  
 
-cacheSolve <- function(x, ...) {
-  mRet <- x$getmInv  #retrieves value stored in cached matrix
-  if(!is.null(mRet)) {
+cacheSolve <- function(x=matrix(),...) {
+  inv<-x$getInverse()  #retrieves value stored in cached matrix and 
+  #if the inverse already computed and skips the calculation
+  if(!is.null(inv)) {
     message("getting cached data")
-    return(mRet)
+    return(inv)
   }
-  mMat <- x$get() #retrieve original stored matrix
-  mRet <- solve(mMat, ...)
-  x$setsolve(mRet)
-  mRet   #returns inverse of matrix x
+  #calculation of the inverse is here
+  OrigMat<-x$get()  #retrieve original stored matrix
+  inv<- solve(OrigMat,...)
+  x$setInverse(inv)
+  inv   #returns inverse of matrix x
 }

@@ -11,7 +11,7 @@ inv<<-NULL
 get<-function() x
 setInverse<-function(solve) inv<<-solve
 getInverse<-function() inv   #retrieves the inverse of the matrix
-list(set=set, get=get,        #returns the function
+list(set=set, get=get,       #returns the function
 setInverse=setInverse,
 getInverse=getInverse)
 }
@@ -20,15 +20,15 @@ getInverse=getInverse)
 ##stored in the cache.  
 
 cacheSolve <- function(x=matrix(),...) {
-  inv<-x$getInverse()  #retrieves value stored in cached matrix and 
-  #if the inverse already computed and skips the calculation
-  if(!is.null(inv)) {
-    message("getting cached data")
-    return(inv)
-  }
-  #calculation of the inverse is here
-  OrigMat<-x$get()  #retrieve original stored matrix
-  inv<- solve(OrigMat,...)
-  x$setInverse(inv)
+inv<-x$getInverse()  #retrieves value stored in cached matrix and 
+#if the inverse already computed the function skips the calculation
+if(!is.null(inv)) {
+message("getting cached data")
+return(inv)
+}
+#calculation of the inverse is here
+OrigMat<-x$get()  #retrieve original stored matrix
+inv<- solve(OrigMat,...)
+x$setInverse(inv)
   inv   #returns inverse of matrix x
 }
